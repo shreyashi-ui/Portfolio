@@ -1,0 +1,82 @@
+/* This file is the DESIGN: colors, fonts, spacing. */
+
+/* Colors saved with names, so we can reuse them below */
+:root {
+  --bg: #0c0c0c;        /* page background (same as the reference site) */
+  --card: #17161b;      /* card background */
+  --line: #2a2830;      /* thin borders */
+  --text: #ece8f2;      /* main text */
+  --muted: #9b96a8;     /* softer text */
+  --accent: #b9a4ff;    /* lilac highlight */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; } /* smooth scrolling when menu links are clicked */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Top menu */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 6vw;
+  background: rgba(12, 12, 12, 0.9);
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled { border-bottom-color: var(--line); } /* border appears after scrolling (script.js adds this) */
+.logo { font-weight: 700; color: var(--text); text-decoration: none; }
+.nav nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 0.95rem; }
+.nav nav a:hover { color: var(--text); }
+
+/* Sections share the same width and spacing */
+main { max-width: 780px; margin: 0 auto; padding: 0 6vw; }
+section { padding: 56px 0; scroll-margin-top: 60px; }
+
+h1 { font-size: clamp(2.6rem, 9vw, 4.6rem); line-height: 1.05; margin: 6px 0 12px; }
+h2 { font-size: 1.8rem; margin-bottom: 20px; }
+h3 { font-size: 1.15rem; }
+
+/* Intro */
+.hero { padding-top: 90px; animation: rise 0.8s ease both; } /* the only animation: intro fades in on load */
+.small { color: var(--muted); }
+.role { color: var(--accent); font-size: 1.2rem; margin-bottom: 24px; }
+.about { color: var(--muted); max-width: 62ch; margin-bottom: 14px; }
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+.card p { color: var(--muted); }
+.card .meta { color: var(--accent); font-size: 0.9rem; margin: 2px 0 8px; }
+.card p + p { margin-top: 6px; }
+
+button {
+  margin-top: 14px; padding: 9px 18px;
+  background: transparent; color: var(--text);
+  border: 1px solid var(--accent); border-radius: 8px;
+  font: inherit; cursor: pointer;
+}
+button:hover { background: var(--accent); color: var(--bg); }
+
+footer { text-align: center; color: var(--muted); padding: 40px 0; font-size: 0.9rem; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* Phones: smaller menu spacing */
+@media (max-width: 560px) { .nav nav a { margin-left: 12px; font-size: 0.85rem; } }
+
+/* Respect people who turn off animations */
+@media (prefers-reduced-motion: reduce) { .hero { animation: none; } html { scroll-behavior: auto; } }
